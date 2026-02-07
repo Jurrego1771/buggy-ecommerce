@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - BuggyShop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>🛒 BuggyShop</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html">Inicio</a>
+                <a href="cart.html" class="active">Carrito <span id="cart-count">0</span></a>
+                <a href="profile.html">Perfil</a>
+                <button id="theme-toggle">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <h2>Tu Carrito de Compras</h2>
+
+        <div class="cart-page">
+            <div class="cart-items-list" id="cart-items-list">
+                <!-- Items del carrito -->
+            </div>
+
+            <div class="cart-summary">
+                <h3>Resumen del Pedido</h3>
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span id="subtotal">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Envío:</span>
+                    <span id="shipping">$0.00</span>
+                </div>
+                <div class="summary-row">
+                    <span>Impuestos:</span>
+                    <span id="taxes">$0.00</span>
+                </div>
+                <hr>
+                <div class="summary-row total">
+                    <span>Total:</span>
+                    <span id="total">$0.00</span>
+                </div>
+                <button class="btn-primary" onclick="window.location.href='checkout.html'">
+                    Proceder al Pago
+                </button>
+                <button class="btn-secondary" onclick="clearCart()">
+                    Vaciar Carrito
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+    <script>
+        // BUG INTENCIONAL: Cálculos de totales pueden dar NaN
+        function renderCartPage() {
+            const cart = getCart();
+            const cartItemsList = document.getElementById('cart-items-list');
+
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
+                return;
+            }
+
+            cartItemsList.innerHTML = cart.map(item => `
+        <div class="cart-item-card">
+          <img src="/uploads/thumbnails/${item.thumbnail}" alt="${item.name}">
+          <div class="item-details">
+            <h4>${item.name}</h4>
+            <p class="item-price">$${item.price}</p>
+          </div>
+          <div class="item-quantity">
+            <button onclick="updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
+            <span>${item.quantity}</span>
+            <button onclick="updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
+          </div>
+          <div class="item-total">
+            $${(item.price * item.quantity).toFixed(2)}
+          </div>
+          <button class="btn-remove" onclick="removeFromCart('${item.id}')">🗑️</button>
+        </div>
+      `).join('');
+
+            updateCartSummary();
+        }
+
+        function updateCartSummary() {
+            const cart = getCart();
+            // BUG INTENCIONAL: No valida que cart tenga elementos
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = subtotal > 100 ? 0 : 15;
+            const taxes = subtotal * 0.16;
+            const total = subtotal + shipping + taxes;
+
+            document.getElementById('subtotal').textContent = '$' + subtotal.toFixed(2);
+            document.getElementById('shipping').textContent = '$' + shipping.toFixed(2);
+            document.getElementById('taxes').textContent = '$' + taxes.toFixed(2);
+            document.getElementById('total').textContent = '$' + total.toFixed(2);
+        }
+
+        function updateQuantity(productId, newQuantity) {
+            // BUG INTENCIONAL: No valida cantidad mínima
+            if (newQuantity <= 0) {
+                removeFromCart(productId);
+                return;
+            }
+
+            const cart = getCart();
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.quantity = newQuantity;
+                saveCart(cart);
+                renderCartPage();
+                updateCartCount();
+            }
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            renderCartPage();
+            updateCartCount();
+            showToast('Carrito vaciado');
+        }
+
+        renderCartPage();
+        updateCartCount();
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "buggy-ecommerce-streaming",
+  "version": "1.0.0",
+  "description": "E-commerce con streaming de video - Proyecto de entrenamiento con bugs intencionales",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "keywords": ["ecommerce", "streaming", "training", "buggy"],
+  "author": "Training Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.2",
+    "fluent-ffmpeg": "^2.1.2",
+    "nodemailer": "^6.9.13"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^7.0.0"
+  }
+}

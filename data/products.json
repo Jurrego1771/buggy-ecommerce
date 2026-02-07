@@ -1,0 +1,112 @@
+[
+    {
+        "id": "1",
+        "name": "Smartphone Galaxy X",
+        "category": "electronics",
+        "price": 599.99,
+        "stock": 15,
+        "description": "Smartphone de última generación con cámara de 108MP",
+        "video": "smartphone.mp4",
+        "thumbnail": "smartphone.jpg",
+        "featured": true
+    },
+    {
+        "id": "2",
+        "name": "Laptop Pro 15",
+        "category": "electronics",
+        "price": 1299.99,
+        "stock": 8,
+        "description": "Laptop profesional con procesador i7 y 16GB RAM",
+        "video": "laptop.mp4",
+        "thumbnail": "laptop.jpg",
+        "featured": true
+    },
+    {
+        "id": "3",
+        "name": "Auriculares Bluetooth",
+        "category": "audio",
+        "price": 89.99,
+        "stock": 25,
+        "description": "Auriculares inalámbricos con cancelación de ruido",
+        "video": "headphones.mp4",
+        "thumbnail": "headphones.jpg",
+        "featured": false
+    },
+    {
+        "id": "4",
+        "name": "Smartwatch Fitness",
+        "category": "wearables",
+        "price": 199.99,
+        "stock": 12,
+        "description": "Reloj inteligente con monitor de salud",
+        "video": "smartwatch.mp4",
+        "thumbnail": "smartwatch.jpg",
+        "featured": true
+    },
+    {
+        "id": "5",
+        "name": "Tablet 10 pulgadas",
+        "category": "electronics",
+        "price": 349.99,
+        "stock": 20,
+        "description": "Tablet con pantalla OLED y stylus incluido",
+        "video": "tablet.mp4",
+        "thumbnail": "tablet.jpg",
+        "featured": false
+    },
+    {
+        "id": "6",
+        "name": "Cámara DSLR Pro",
+        "category": "photography",
+        "price": 899.99,
+        "stock": 5,
+        "description": "Cámara profesional con lente 18-55mm",
+        "video": "camera.mp4",
+        "thumbnail": "camera.jpg",
+        "featured": true
+    },
+    {
+        "id": "7",
+        "name": "Consola Gaming Next",
+        "category": "gaming",
+        "price": 499.99,
+        "stock": 10,
+        "description": "Consola de videojuegos de última generación",
+        "video": "console.mp4",
+        "thumbnail": "console.jpg",
+        "featured": true
+    },
+    {
+        "id": "8",
+        "name": "Teclado Mecánico RGB",
+        "category": "gaming",
+        "price": 129.99,
+        "stock": 18,
+        "description": "Teclado mecánico con iluminación RGB personalizable",
+        "video": "keyboard.mp4",
+        "thumbnail": "keyboard.jpg",
+        "featured": false
+    },
+    {
+        "id": "9",
+        "name": "Mouse Gaming Pro",
+        "category": "gaming",
+        "price": 79.99,
+        "stock": 30,
+        "description": "Mouse ergonómico con 16000 DPI",
+        "video": "mouse.mp4",
+        "thumbnail": "mouse.jpg",
+        "featured": false
+    },
+    {
+        "id": "10",
+        "name": "Monitor 4K 27 pulgadas",
+        "category": "electronics",
+        "price": 449.99,
+        "stock": 7,
+        "description": "Monitor 4K con HDR y 144Hz",
+        "video": "monitor.mp4",
+        "thumbnail": "monitor.jpg",
+        "featured": true
+    }
+]

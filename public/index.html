@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuggyShop - E-commerce con Video Streaming</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <h1>🛒 BuggyShop</h1>
+      </div>
+      <div class="nav-menu">
+        <a href="index.html">Inicio</a>
+        <a href="cart.html">Carrito <span id="cart-count">0</span></a>
+        <a href="profile.html" id="profile-link">Perfil</a>
+        <button id="theme-toggle">🌙</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <section class="hero">
+      <h2>Productos en Video Streaming</h2>
+      <p>Descubre nuestros productos con videos en alta calidad</p>
+    </section>
+
+    <section class="filters">
+      <input type="text" id="search-input" placeholder="Buscar productos...">
+      <select id="category-filter">
+        <option value="">Todas las categorías</option>
+        <option value="electronics">Electrónica</option>
+        <option value="audio">Audio</option>
+        <option value="wearables">Wearables</option>
+        <option value="photography">Fotografía</option>
+        <option value="gaming">Gaming</option>
+      </select>
+    </section>
+
+    <section class="products-grid" id="products-grid">
+      <!-- BUG INTENCIONAL: Productos se cargan aquí dinámicamente -->
+    </section>
+  </main>
+
+  <div id="cart-drawer" class="cart-drawer">
+    <div class="cart-header">
+      <h3>Carrito de Compras</h3>
+      <button id="close-cart">✕</button>
+    </div>
+    <div class="cart-items" id="cart-items">
+      <!-- Items del carrito -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cart-total">$0.00</span>
+      </div>
+      <button class="btn-checkout" onclick="window.location.href='checkout.html'">
+        Proceder al Pago
+      </button>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <div id="video-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <video id="modal-video" controls></video>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // BUG INTENCIONAL: Script inline vulnerable a XSS
+    const urlParams = new URLSearchParams(window.location.search);
+    const message = urlParams.get('message');
+    if (message) {
+      document.getElementById('toast').innerHTML = message;
+      document.getElementById('toast').classList.add('show');
+    }
+  </script>
+</body>
+</html>
