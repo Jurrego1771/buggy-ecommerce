@@ -76,7 +76,7 @@ app.get('/api/products', (req, res) => {
     let filtered = products;
 
     if (search) {
-        // BUG INTENCIONAL: Búsqueda case-sensitive (ya esta solucionado)
+  // FIXED: Búsqueda case-insensitive (Level 0, Bug #1)
         filtered = filtered.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
     }
 
