@@ -77,7 +77,7 @@ app.get('/api/products', (req, res) => {
 
     if (search) {
         // BUG INTENCIONAL: Búsqueda case-sensitive
-        filtered = filtered.filter(p => p.name.includes(search));
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(search.toLowerCase()));
     }
 
     if (category) {
